@@ -3,14 +3,211 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shan Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHAN STORE | Free Fire</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #0b1020;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    header {
+      padding: 30px 15px;
+      background: linear-gradient(135deg, #111a35, #173b55);
+      border-bottom: 2px solid #00ffc8;
+    }
+
+    h1 {
+      color: #00ffc8;
+      font-size: 32px;
+      margin: 10px 0;
+    }
+
+    header p {
+      color: #d4e4f5;
+    }
+
+    .music-button {
+      position: fixed;
+      right: 15px;
+      bottom: 18px;
+      z-index: 10;
+      border: 0;
+      border-radius: 30px;
+      padding: 14px 18px;
+      background: #00ffc8;
+      color: #07111d;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00ffc855;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px 15px 90px;
+    }
+
+    .video-card {
+      background: #151d30;
+      border: 1px solid #2d405a;
+      border-radius: 16px;
+      padding: 18px;
+      margin: 22px auto;
+      max-width: 600px;
+    }
+
+    .video-card h2 {
+      color: #00ffc8;
+      font-size: 21px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 10px;
+      background: black;
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffd166;
+      margin: 16px 0;
+    }
+
+    .buy-button {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 9px;
+      background: #00c875;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .buy-button:active {
+      opacity: 0.8;
+    }
+
+    .contact {
+      margin-top: 35px;
+      padding: 25px 10px;
+      border-top: 1px solid #2d405a;
+    }
+
+    footer {
+      color: #9baac0;
+      font-size: 13px;
+      padding: 20px;
+    }
+  </style>
 </head>
-<body style="background:#101827;color:white;text-align:center;font-family:Arial;padding:40px">
-  <h1>⚡ SHAN STORE ⚡</h1>
-  <h2>Free Fire Videos</h2>
-  <p>Welcome to Shan Store!</p>
-  <p>Contact us on WhatsApp</p>
-  <a style="color:#00ffb3" href="https://wa.me/94774423453">Chat on WhatsApp</a>
+
+<body>
+
+  <header>
+    <h1>⚡ SHAN STORE ⚡</h1>
+    <p>Free Fire Videos • Best Quality • Trusted Store</p>
+  </header>
+
+  <main class="container">
+
+    <h2>🔥 Our Free Fire Videos 🔥</h2>
+
+    <section class="video-card">
+      <h2>Free Fire Video 1</h2>
+      <video controls playsinline preload="metadata">
+        <source src="video1.mp4" type="video/mp4">
+        Your browser does not support video.
+      </video>
+      <p class="price">Rs. 2500</p>
+      <a class="buy-button"
+         href="https://wa.me/94774423453?text=I%20am%20interested%20in%20Free%20Fire%20Video%201">
+        Order on WhatsApp
+      </a>
+    </section>
+
+    <section class="video-card">
+      <h2>Android &amp; iOS Panel — Aim Lock</h2>
+      <video controls playsinline preload="metadata">
+        <source src="video2.mp4" type="video/mp4">
+        Your browser does not support video.
+      </video>
+      <p class="price">Rs. 3500</p>
+      <a class="buy-button"
+         href="https://wa.me/94774423453?text=I%20am%20interested%20in%20Video%202">
+        Order on WhatsApp
+      </a>
+    </section>
+
+    <section class="video-card">
+      <h2>All Device Working — All Unlocked</h2>
+      <video controls playsinline preload="metadata">
+        <source src="video3.mp4" type="video/mp4">
+        Your browser does not support video.
+      </video>
+      <p class="price">Rs. 5500</p>
+      <a class="buy-button"
+         href="https://wa.me/94774423453?text=I%20am%20interested%20in%20Video%203">
+        Order on WhatsApp
+      </a>
+    </section>
+
+    <section class="contact">
+      <h2>📱 Contact SHAN STORE</h2>
+      <p>For details and orders, contact us on WhatsApp.</p>
+      <a class="buy-button"
+         href="https://wa.me/94774423453"
+         target="_blank" rel="noopener">
+        Chat on WhatsApp
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 SHAN STORE. All rights reserved.
+  </footer>
+
+  <audio id="bgMusic" loop preload="none">
+    <source src="background.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="music-button" id="musicBtn" type="button">
+    🎵 Play Music
+  </button>
+
+  <script>
+    const music = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
+
+    musicBtn.addEventListener("click", async function () {
+      if (music.paused) {
+        try {
+          await music.play();
+          musicBtn.textContent = "⏸ Pause Music";
+        } catch (error) {
+          musicBtn.textContent = "🎵 Tap to Play";
+        }
+      } else {
+        music.pause();
+        musicBtn.textContent = "🎵 Play Music";
+      }
+    });
+
+    music.addEventListener("ended", function () {
+      musicBtn.textContent = "🎵 Play Music";
+    });
+  </script>
+
 </body>
 </html>
+
