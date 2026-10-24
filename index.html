@@ -2,212 +2,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHAN STORE | Free Fire</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHAN STORE | Free Fire</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      background: #0b1020;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
+html {
+  min-height: 100%;
+  background: #070b18;
+}
 
-    header {
-      padding: 30px 15px;
-      background: linear-gradient(135deg, #111a35, #173b55);
-      border-bottom: 2px solid #00ffc8;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: transparent;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+}
 
-    h1 {
-      color: #00ffc8;
-      font-size: 32px;
-      margin: 10px 0;
-    }
+/* Animated lightning background */
+#storm {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 30%, #102b4c55, transparent 70%),
+    #070b18;
+}
 
-    header p {
-      color: #d4e4f5;
-    }
+.flash {
+  position: absolute;
+  inset: 0;
+  background: #8cecff;
+  opacity: 0;
+  animation: skyFlash 7s infinite;
+}
 
-    .music-button {
-      position: fixed;
-      right: 15px;
-      bottom: 18px;
-      z-index: 10;
-      border: 0;
-      border-radius: 30px;
-      padding: 14px 18px;
-      background: #00ffc8;
-      color: #07111d;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 15px #00ffc855;
-    }
+.flash.second {
+  animation-delay: 3.5s;
+}
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px 15px 90px;
-    }
+@keyframes skyFlash {
+  0%, 85%, 88%, 92%, 100% { opacity: 0; }
+  86%, 87% { opacity: 0.13; }
+  89% { opacity: 0.04; }
+  90% { opacity: 0.18; }
+}
 
-    .video-card {
-      background: #151d30;
-      border: 1px solid #2d405a;
-      border-radius: 16px;
-      padding: 18px;
-      margin: 22px auto;
-      max-width: 600px;
-    }
+.bolt {
+  position: absolute;
+  top: -5%;
+  left: 12%;
+  width: 75px;
+  height: 75vh;
+  opacity: 0;
+  background: linear-gradient(
+    180deg,
+    #ffffff,
+    #8af7ff 40%,
+    #00aaff 80%,
+    transparent
+  );
+  clip-path: polygon(
+    45% 0, 75% 0, 47% 29%,
+    76% 29%, 24% 62%, 39% 43%,
+    12% 43%
+  );
+  filter: drop-shadow(0 0 9px #00d9ff);
+  animation: boltStrike 7s infinite;
+}
 
-    .video-card h2 {
-      color: #00ffc8;
-      font-size: 21px;
-    }
+.bolt.two {
+  left: auto;
+  right: 12%;
+  height: 58vh;
+  transform: scaleX(-1);
+  animation-delay: 3.5s;
+}
 
-    video {
-      width: 100%;
-      border-radius: 10px;
-      background: black;
-    }
+@keyframes boltStrike {
+  0%, 84%, 88%, 92%, 100% { opacity: 0; }
+  85%, 87% { opacity: 0.95; }
+  86% { opacity: 0.15; }
+  89%, 91% { opacity: 0; }
+}
 
-    .price {
-      font-size: 24px;
-      font-weight: bold;
-      color: #ffd166;
-      margin: 16px 0;
-    }
+/* Keep website content above the background */
+header, main, footer, .music-button {
+  position: relative;
+  z-index: 1;
+}
 
-    .buy-button {
-      display: inline-block;
-      padding: 13px 22px;
-      border-radius: 9px;
-      background: #00c875;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
+header {
+  padding: 25px 14px;
+  background: #101a35dd;
+  border-bottom: 2px solid #00ffc8;
+  box-shadow: 0 0 22px #00ffc822;
+}
 
-    .buy-button:active {
-      opacity: 0.8;
-    }
+h1 {
+  color: #00ffc8;
+  font-size: clamp(26px, 6vw, 38px);
+  margin: 10px 0;
+  text-shadow: 0 0 14px #00ffc855;
+}
 
-    .contact {
-      margin-top: 35px;
-      padding: 25px 10px;
-      border-top: 1px solid #2d405a;
-    }
+header p {
+  color: #d4e4f5;
+  font-size: 14px;
+}
 
-    footer {
-      color: #9baac0;
-      font-size: 13px;
-      padding: 20px;
-    }
-  </style>
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px 14px 100px;
+}
+
+.page-title {
+  font-size: clamp(24px, 5vw, 34px);
+  margin: 20px 0 28px;
+}
+
+.video-card {
+  background: #151d30f2;
+  border: 1px solid #345070;
+  border-radius: 20px;
+  padding: 18px;
+  margin: 24px auto;
+  max-width: 600px;
+  box-shadow: 0 0 24px #00bfff12;
+}
+
+.video-card h2 {
+  color: #00ffc8;
+  font-size: clamp(21px, 5vw, 28px);
+  margin: 12px 0 22px;
+}
+
+video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.price {
+  font-size: clamp(27px, 6vw, 34px);
+  font-weight: bold;
+  color: #ffd166;
+  margin: 22px 0;
+}
+
+.buy-button {
+  display: inline-block;
+  padding: 15px 22px;
+  border-radius: 12px;
+  background: #00c875;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.buy-button:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+
+.contact {
+  margin-top: 35px;
+  padding: 25px 10px;
+  border-top: 1px solid #2d405a;
+}
+
+.music-button {
+  position: fixed;
+  right: 14px;
+  bottom: 18px;
+  z-index: 5;
+  border: 0;
+  border-radius: 35px;
+  padding: 15px 19px;
+  background: #00ffc8;
+  color: #07111d;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 0 24px #00ffc855;
+  cursor: pointer;
+}
+
+footer {
+  color: #9baac0;
+  font-size: 13px;
+  padding: 20px;
+  border-top: 1px solid #263650;
+  background: #070b18cc;
+}
+
+@media (max-width: 400px) {
+  .video-card { padding: 13px; }
+  .buy-button { font-size: 15px; padding: 13px 16px; }
+  .music-button { font-size: 14px; padding: 13px 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bolt, .flash { animation-duration: 14s; }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>⚡ SHAN STORE ⚡</h1>
-    <p>Free Fire Videos • Best Quality • Trusted Store</p>
-  </header>
+<!-- Lightning background -->
+<div id="storm" aria-hidden="true">
+  <div class="flash"></div>
+  <div class="flash second"></div>
+  <div class="bolt"></div>
+  <div class="bolt two"></div>
+</div>
 
-  <main class="container">
+<header>
+  <h1>⚡ SHAN STORE ⚡</h1>
+  <p>Free Fire Videos • Best Quality • Trusted Store</p>
+</header>
 
-    <h2>🔥 Our Free Fire Videos 🔥</h2>
+<main class="container">
 
-    <section class="video-card">
-      <h2>Free Fire Video 1</h2>
-      <video controls playsinline preload="metadata">
-        <source src="video1.mp4" type="video/mp4">
-        Your browser does not support video.
-      </video>
-      <p class="price">Rs. 2500</p>
-      <a class="buy-button"
-         href="https://wa.me/94774423453?text=I%20am%20interested%20in%20Free%20Fire%20Video%201">
-        Order on WhatsApp
-      </a>
-    </section>
+  <h2 class="page-title">🔥 Our Free Fire Videos 🔥</h2>
 
-    <section class="video-card">
-      <h2>Android &amp; iOS Panel — Aim Lock</h2>
-      <video controls playsinline preload="metadata">
-        <source src="video2.mp4" type="video/mp4">
-        Your browser does not support video.
-      </video>
-      <p class="price">Rs. 3500</p>
-      <a class="buy-button"
-         href="https://wa.me/94774423453?text=I%20am%20interested%20in%20Video%202">
-        Order on WhatsApp
-      </a>
-    </section>
+  <section class="video-card">
+    <h2>Free Fire Video 1</h2>
+    <video controls playsinline preload="metadata">
+      <source src="video1.mp4" type="video/mp4">
+      Your browser does not support video.
+    </video>
+    <p class="price">Rs. 2500</p>
+    <a class="buy-button"
+       href="https://wa.me/94774423453?text=I%20am%20interested%20in%20Free%20Fire%20Video%201">
+      Order on WhatsApp
+    </a>
+  </section>
 
-    <section class="video-card">
-      <h2>All Device Working — All Unlocked</h2>
-      <video controls playsinline preload="metadata">
-        <source src="video3.mp4" type="video/mp4">
-        Your browser does not support video.
-      </video>
-      <p class="price">Rs. 5500</p>
-      <a class="buy-button"
-         href="https://wa.me/94774423453?text=I%20am%20interested%20in%20Video%203">
-        Order on WhatsApp
-      </a>
-    </section>
+  <section class="video-card">
+    <h2>Android &amp; iOS Panel — Aim Lock</h2>
+    <video controls playsinline preload="metadata">
+      <source src="video2.mp4" type="video/mp4">
+      Your browser does not support video.
+    </video>
+    <p class="price">Rs. 3500</p>
+    <a class="buy-button"
+       href="https://wa.me/94774423453?text=I%20am%20interested%20in%20Video%202">
+      Order on WhatsApp
+    </a>
+  </section>
 
-    <section class="contact">
-      <h2>📱 Contact SHAN STORE</h2>
-      <p>For details and orders, contact us on WhatsApp.</p>
-      <a class="buy-button"
-         href="https://wa.me/94774423453"
-         target="_blank" rel="noopener">
-        Chat on WhatsApp
-      </a>
-    </section>
+  <section class="video-card">
+    <h2>All Device Working — All Unlocked</h2>
+    <video controls playsinline preload="metadata">
+      <source src="video3.mp4" type="video/mp4">
+      Your browser does not support video.
+    </video>
+    <p class="price">Rs. 5500</p>
+    <a class="buy-button"
+       href="https://wa.me/94774423453?text=I%20am%20interested%20in%20Video%203">
+      Order on WhatsApp
+    </a>
+  </section>
 
-  </main>
+  <section class="contact">
+    <h2>📱 Contact SHAN STORE</h2>
+    <p>For details and orders, contact us on WhatsApp.</p>
+    <a class="buy-button"
+       href="https://wa.me/94774423453"
+       target="_blank" rel="noopener">
+      Chat on WhatsApp
+    </a>
+  </section>
 
-  <footer>
-    © 2026 SHAN STORE. All rights reserved.
-  </footer>
+</main>
 
-  <audio id="bgMusic" loop preload="none">
-    <source src="background.mp3" type="audio/mpeg">
-  </audio>
+<footer>
+  © 2026 SHAN STORE. All rights reserved.
+</footer>
 
-  <button class="music-button" id="musicBtn" type="button">
-    🎵 Play Music
-  </button>
+<audio id="bgMusic" loop preload="none">
+  <source src="background.mp3" type="audio/mpeg">
+</audio>
 
-  <script>
-    const music = document.getElementById("bgMusic");
-    const musicBtn = document.getElementById("musicBtn");
+<button class="music-button" id="musicBtn" type="button">
+  🎵 Play Music
+</button>
 
-    musicBtn.addEventListener("click", async function () {
-      if (music.paused) {
-        try {
-          await music.play();
-          musicBtn.textContent = "⏸ Pause Music";
-        } catch (error) {
-          musicBtn.textContent = "🎵 Tap to Play";
-        }
-      } else {
-        music.pause();
-        musicBtn.textContent = "🎵 Play Music";
-      }
-    });
+<script>
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
 
-    music.addEventListener("ended", function () {
-      musicBtn.textContent = "🎵 Play Music";
-    });
-  </script>
+musicBtn.addEventListener("click", async function () {
+  if (music.paused) {
+    musicBtn.textContent = "⏳ Loading...";
+
+    try {
+      await music.play();
+      musicBtn.textContent = "⏸ Pause Music";
+    } catch (error) {
+      musicBtn.textContent = "🎵 Retry Music";
+      alert(
+        "Music play වෙන්නේ නැත්නම් background.mp3 file එකේ නම, path එක සහ file එක upload කරලා තියෙනවාද බලන්න."
+      );
+    }
+  } else {
+    music.pause();
+    musicBtn.textContent = "🎵 Play Music";
+  }
+});
+
+music.addEventListener("play", function () {
+  musicBtn.textContent = "⏸ Pause Music";
+});
+
+music.addEventListener("pause", function () {
+  musicBtn.textContent = "🎵 Play Music";
+});
+</script>
 
 </body>
 </html>
-
